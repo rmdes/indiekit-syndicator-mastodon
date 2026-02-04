@@ -9,7 +9,8 @@ const defaults = {
   characterLimit: 500,
   checked: false,
   includePermalink: false,
-  syndicateExternalLikes: true, // NEW: Enable syndication of external likes
+  syndicateExternalLikes: true, // Enable syndication of external likes
+  syndicateExternalReposts: true, // Enable syndication of external reposts
 };
 
 export default class MastodonSyndicator {
@@ -23,6 +24,7 @@ export default class MastodonSyndicator {
    * @param {string} [options.url] - Server URL
    * @param {string} [options.user] - Username
    * @param {boolean} [options.syndicateExternalLikes] - Syndicate likes of external URLs as posts
+   * @param {boolean} [options.syndicateExternalReposts] - Syndicate reposts of external URLs as posts
    * @param {boolean} [options.checked] - Check syndicator in UI
    */
   constructor(options = {}) {
@@ -95,6 +97,7 @@ export default class MastodonSyndicator {
         includePermalink: this.options.includePermalink,
         serverUrl: `${this.#url.protocol}//${this.#url.hostname}`,
         syndicateExternalLikes: this.options.syndicateExternalLikes,
+        syndicateExternalReposts: this.options.syndicateExternalReposts,
       });
 
       return await mastodon.post(properties, publication.me);
