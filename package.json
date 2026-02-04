@@ -1,0 +1,30 @@
+{
+  "name": "@rmdes/indiekit-syndicator-mastodon",
+  "version": "1.0.2",
+  "description": "Mastodon syndicator for Indiekit with external like support",
+  "type": "module",
+  "main": "index.js",
+  "exports": "./index.js",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "mastodon",
+    "syndication"
+  ],
+  "author": "rmdes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rmdes/indiekit-syndicator-mastodon"
+  },
+  "dependencies": {
+    "html-to-text": "^9.0.0",
+    "masto": "^6.0.0"
+  },
+  "peerDependencies": {
+    "@indiekit/indiekit": "1.x",
+    "@indiekit/error": "^1.0.0-beta.25",
+    "@indiekit/util": "^1.0.0-beta.25"
+  }
+}
