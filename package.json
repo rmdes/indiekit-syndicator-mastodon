@@ -1,6 +1,6 @@
 {
   "name": "@rmdes/indiekit-syndicator-mastodon",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Mastodon syndicator for Indiekit with external like support",
   "type": "module",
   "main": "index.js",
