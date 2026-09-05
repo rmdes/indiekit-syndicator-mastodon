@@ -45,7 +45,10 @@ describe("syndicator-mastodon/lib/utils", () => {
       },
     );
 
-    assert.equal(result.status, "> I ate a cheese sandwich, which was > 10.");
+    assert.equal(
+      result.status,
+      "> I ate a cheese sandwich, which was > 10.\n\nhttps://foo.bar/lunchtime",
+    );
   });
 
   it("Creates a status with HTML content and appends last link", () => {
@@ -58,7 +61,7 @@ describe("syndicator-mastodon/lib/utils", () => {
 
     assert.equal(
       result.status,
-      "> I ate a cheese sandwich, which was > 10. https://en.wikipedia.org/wiki/Cheese",
+      "> I ate a cheese sandwich, which was > 10.\n\nhttps://en.wikipedia.org/wiki/Cheese",
     );
   });
 
@@ -101,18 +104,13 @@ describe("syndicator-mastodon/lib/utils", () => {
     assert.equal(result.inReplyToId, "1234567890987654321");
   });
 
-  it("Throws creating a status if post is off-service reply", () => {
-    assert.throws(
-      () => {
-        createStatus(JSON.parse(getFixture("jf2/reply-off-service.jf2")), {
-          serverUrl: "https://mastodon.example",
-        });
-      },
-      {
-        name: "BadRequestError",
-        message: "Not a reply to a URL at this target",
-      },
+  it("Posts an off-service reply as a plain status", () => {
+    const result = createStatus(
+      JSON.parse(getFixture("jf2/reply-off-service.jf2")),
+      { serverUrl: "https://mastodon.example" },
     );
+
+    assert.equal(result.inReplyToId, undefined);
   });
 
   it("Creates a status with a photo", () => {
@@ -242,6 +240,6 @@ describe("syndicator-mastodon/lib/utils", () => {
       "https://mastodon.example",
     );
 
-    assert.equal(result, "Hello world, hello moon. https://moon.example");
+    assert.equal(result, "Hello world, hello moon.\n\nhttps://moon.example");
   });
 });

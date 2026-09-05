@@ -14,6 +14,14 @@ describe("syndicator-mastodon/lib/mastodon", () => {
     includePermalink: false,
     serverUrl: "https://mastodon.example",
   });
+  const mastodonNoExternal = new Mastodon({
+    accessToken: "token",
+    characterLimit: 500,
+    includePermalink: false,
+    serverUrl: "https://mastodon.example",
+    syndicateExternalLikes: false,
+    syndicateExternalReposts: false,
+  });
   const me = "https://website.example";
   const photo = [{ url: "https://website.example/photo1.jpg", alt: "Photo" }];
   const statusUrl = "https://mastodon.example/@username/1234567890987654321";
@@ -83,7 +91,7 @@ describe("syndicator-mastodon/lib/mastodon", () => {
   });
 
   it("Doesn’t post a favourite of a URL to Mastodon", async () => {
-    const result = await mastodon.post(
+    const result = await mastodonNoExternal.post(
       { "like-of": "https://foo.bar/lunchtime" },
       me,
     );
@@ -101,7 +109,7 @@ describe("syndicator-mastodon/lib/mastodon", () => {
   });
 
   it("Doesn’t post a repost of a URL to Mastodon", async () => {
-    const result = await mastodon.post(
+    const result = await mastodonNoExternal.post(
       { "repost-of": "https://foo.bar/lunchtime" },
       me,
     );
