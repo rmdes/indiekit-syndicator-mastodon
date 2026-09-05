@@ -1,11 +1,12 @@
 {
   "name": "@rmdes/indiekit-syndicator-mastodon",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Mastodon syndicator for Indiekit with external like support",
   "type": "module",
   "main": "index.js",
   "exports": "./index.js",
   "files": [
+    "assets",
     "lib",
     "index.js"
   ],
@@ -21,13 +22,6 @@
   "engines": {
     "node": ">=24.17"
   },
-  "type": "module",
-  "main": "index.js",
-  "files": [
-    "assets",
-    "lib",
-    "index.js"
-  ],
   "bugs": {
     "url": "https://github.com/getindiekit/indiekit/issues"
   },
