@@ -35,8 +35,5 @@
     "brevity": "^0.2.9",
     "html-to-text": "^10.0.0",
     "masto": "^8.0.0"
-  },
-  "peerDependencies": {
-    "@indiekit/indiekit": ">=1.0.0-beta.29"
   }
 }
