@@ -104,12 +104,15 @@ describe("syndicator-mastodon/lib/utils", () => {
     assert.equal(result.inReplyToId, "1234567890987654321");
   });
 
-  it("Posts an off-service reply as a plain status", () => {
+  it("Creates a status for a reply to a URL on another server", () => {
     const result = createStatus(
       JSON.parse(getFixture("jf2/reply-off-service.jf2")),
-      { serverUrl: "https://mastodon.example" },
+      {
+        serverUrl: "https://mastodon.example",
+      },
     );
 
+    assert.equal(result.status, "I ate a cheese sandwich too!");
     assert.equal(result.inReplyToId, undefined);
   });
 
