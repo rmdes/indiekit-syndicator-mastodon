@@ -84,9 +84,8 @@ export default class MastodonSyndicator {
         name: "url",
         message: "What is the URL of your Mastodon server?",
         validate: (value) =>
-          URL.canParse(value)
-            ? true
-            : "Enter a valid URL, for example https://mastodon.social",
+          URL.canParse(value) ||
+          "Enter a valid URL, for example https://mastodon.social",
       },
       {
         type: "text",
@@ -98,8 +97,16 @@ export default class MastodonSyndicator {
 
   async syndicate(properties, publication) {
     try {
+      const { accessToken } = this.options;
+
+      if (!accessToken) {
+        throw IndiekitError.unauthorized(
+          "No access token. Set the `accessToken` option or `MASTODON_ACCESS_TOKEN`.",
+        );
+      }
+
       const mastodon = new Mastodon({
-        accessToken: this.options.accessToken,
+        accessToken,
         characterLimit: this.options.characterLimit,
         includeCategories: this.options.includeCategories,
         includePermalink: this.options.includePermalink,
