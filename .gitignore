@@ -1,1 +1,5 @@
 node_modules/
+
+# Libraries do not commit a lockfile: it would put `npm ci` on the publish
+# critical path, where a lock out of sync with package.json is a hard failure.
+package-lock.json
